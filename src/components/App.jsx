@@ -36,11 +36,7 @@ export const App = () => {
 
         setItems(prevItems => [...prevItems, ...hits]);
 
-        if (page >= Math.ceil(totalHits / 12)) {
-          return setShowLoadMore(false);
-        }
-
-        setShowLoadMore(true);
+        setShowLoadMore(page < Math.ceil(totalHits / 12));
       } catch (error) {
         errorMesage(error.message);
       } finally {

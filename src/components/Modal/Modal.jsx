@@ -4,17 +4,16 @@ import { useEffect } from 'react';
 
 export const Modal = ({ onClose, children }) => {
   useEffect(() => {
+    const handlePressEsc = e => {
+      if (e.code === 'Escape') {
+        onClose();
+      }
+    };
     window.addEventListener('keydown', handlePressEsc);
     return () => {
       window.removeEventListener('keydown', handlePressEsc);
     };
-  });
-
-  const handlePressEsc = e => {
-    if (e.code === 'Escape') {
-      onClose();
-    }
-  };
+  }, [onClose]);
 
   const handleBackdropClick = e => {
     if (e.target === e.currentTarget) {
