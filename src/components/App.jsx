@@ -12,7 +12,6 @@ export const App = () => {
   const [page, setPage] = useState(1);
   const [isLoading, setIsLoading] = useState(false);
   const [items, setItems] = useState([]);
-  const [error, setError] = useState(null);
   const [showLoadMore, setShowLoadMore] = useState(false);
 
   useEffect(() => {
@@ -21,7 +20,6 @@ export const App = () => {
     }
     async function fetchImages() {
       try {
-        setError(false);
         setIsLoading(true);
         const { hits, totalHits } = await FetchImages(query, page);
 
@@ -44,7 +42,6 @@ export const App = () => {
 
         setShowLoadMore(true);
       } catch (error) {
-        setError(error);
         errorMesage(error.message);
       } finally {
         setIsLoading(false);
@@ -68,7 +65,6 @@ export const App = () => {
     setQuery(searchQuery);
     setPage(1);
     setItems([]);
-    setError(null);
     setIsLoading(false);
   };
 
